@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CREDIT</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="shortcut icon" href="./imagenes/favicon.png" type="image/x-icon" />
+  <style>
+     body {
+      overflow-x: hidden;
+      overflow-y: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: fantasy;
+      background-image: url('imagenes/pio.gif'); /* Imagen por defecto */
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      width: 100vh; /* Corregido a 100vw para cubrir toda la pantalla */
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 250vh;
+      height: 100vh;
+      background-color: black;
+      opacity: 0;
+      animation: darken 160s forwards;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    @keyframes darken {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .container {
+      text-align: center;
+      color: rgb(255, 255, 255);
+      position: relative;
+      border-color: transparent;
+      margin-left: 110%;
+      float: left;
+      z-index: 2;
+    }
+
+    .title {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .credits {
+      animation: creditsAnimation 160s forwards;
+    }
+
+    .credit-line {
+      opacity: 0;
+      animation: creditLineAnimation 2s ease-in-out forwards;
+      margin-bottom: 20px;
+    }
+
+    .credit-role {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .credit-name {
+      font-size: 1.5rem;
+    }
+
+    @keyframes creditsAnimation {
+      from {
+        transform: translateY(100%);
+      }
+      to {
+        transform: translateY(-100%);
+      }
+    }
+
+    @keyframes creditLineAnimation {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .agradecimiento {
+      display: none;
+      color: white;
+      font-size: 4rem;
+      margin-top: 100px;
+      width: 160%;
+      margin-left: -90px;
+    }
+
+    .btn-salir {
+      display: none;
+      background-color: #ffffff;
+      color: #000000;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      margin-left: 100px;
+      margin-bottom: 200px; /* Ajusta según sea necesario */
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay>
+    <source src="sonidos/electronic jazz.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+  <a href="options.html" class="cerrar-link">
+    <img
+      src="imagenes/xxx.png"
+      alt="Cerrar"
+      style="
+        width: 100px;
+        height: 100px;
+        margin-top: -700px;
+        float: right;
+        margin-right: -259%;
+      "
+    />
+  </a>
+  <div class="overlay"></div>
+  <div class="container">
+    <div class="title">
+      <h1>SAVE and RECYCLE</h1>
+    </div>
+    <div class="credits">
+      <div class="credit-line">
+        <p class="credit-role">
+          <h1 style="font-size: 80px;">SAVE and <br> RECYCLE</h1>
+        </p>
+        <p class="credit-role">GAME MANAGER</p>
+        <p class="credit-name">Yasir El Bouazzati</p>
+      </div>
+      <div class="credit-line">
+        <p class="credit-role">GAME TESTER</p>
+        <p class="credit-name">Yasir El Bouazzati</p>
+      </div>
+        <div class="credit-line">
+        <p class="credit-role">FRONTEND DEVELOPMENT</p>
+        <p class="credit-name">Yasir El Bouazzati</p>
+      </div>
+      <div class="credit-line">
+        <p class="credit-role">BACKEND DEVELOPMENT</p>
+        <p class="credit-name">Yasir El Bouazzati</p>
+        <p class="credit-name">Nil Ferras</p>
+      </div>
+      <div class="credit-line">
+        <p class="credit-role">GAME DESIGNER</p>
+        <p class="credit-name">Yasir El Bouazzati</p>
+        <p class="credit-name">Nil Ferras</p>
+        <p class="credit-name">Daniel Escobar</p>
+      </div>
+        <div class="credit-line">
+        <p class="credit-role">WHO DID NOTHING</p>
+        <p class="credit-name">Daniel Escobar</p>
+      </div>
+
+      <div class="credit-line">
+       
+      </div>
+    </div>
+    <div class="agradecimiento" id="agradecimiento">
+     THANKS FOR PLAY THIS GAME
+    </div>
+    <a href="credit.html"><button class="btn-salir" id="btn-salir">RETURN</button></a>
+  </div>
+  <script>
+    const agradecimiento = document.getElementById('agradecimiento');
+    const btnSalir = document.getElementById('btn-salir');
+
+    // Muestra el mensaje de agradecimiento y el botón de salida después de 160 segundos
+    setTimeout(() => {
+      agradecimiento.style.display = 'block';
+      btnSalir.style.display = 'block';
+    }, 99000 ); 
+  </script>
+</body>
+</html>

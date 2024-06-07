@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LANGUAGE</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    
+  <link rel="shortcut icon" href="./imagenes/favicon.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="./imagenes/favicon.png"
+      type="image/x-icon"
+    />
+
+    <style>
+      .container1 {
+        display: flex;
+        margin-left: 12% ;
+        margin-top: 10%;
+      }
+
+      .image-wrapper {
+        position: relative;
+        margin-right: 10px; /* Espacio entre imágenes */
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 71%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        background-color: black;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .image-wrapper:hover .overlay {
+        opacity: 1;
+      }
+
+    
+
+      /* Tamaño de las imágenes */
+      .image-wrapper img {
+        width: 100px; /* Ancho deseado */
+        height: 100px; /* Alto deseado */
+      }
+
+
+        .fondo {
+  background-image: url(imagenes/pio.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vh;
+  height: 100%;
+}
+
+
+.image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 71%;
+            background: rgba(0, 0, 0, 3.5);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .image-wrapper:hover .overlay {
+            opacity: 1;
+        }
+    </style>
+  </head>
+
+  <body class="fondo">
+    <main>
+   
+        <a href="options.html" class="cerrar-link">
+        <img
+          src="imagenes/xxx.png"
+          alt="Cerrar"
+          style="
+            width: 100px;
+            height: 100px;
+            margin-top: -142px;
+            float: left;
+            margin-left: -750px;
+          "
+        />
+      </a>
+
+<img src="imagenes/LANGUAGE.png" alt="">
+ <div class="container1">
+        <div class="image-wrapper" id="image1">
+            <a href="language-esp.html"><img src="imagenes/bandera-españa.png" alt="Imagen 1" style="width: 390px; height: 35vh; margin-right: 8%;"/>
+            <div class="overlay">
+                <div class="text"><img src="imagenes/spanish-ing.png" alt="" style="width: 120px; height: 5vh;"></div>
+            </div>
+            </a>
+        </div>
+        
+        <div class="image-wrapper" id="image2">
+            <a href="language-cat.html"><img src="imagenes/bandera-cataluña.png" alt="Imagen 2" style="width: 390px; height: 35vh;"/>
+            <div class="overlay">
+                <div class="text"><img src="imagenes/CATALAN-ING.png" alt="" style="width: 120px; height: 5vh;"></div>
+            </div>
+            </a>
+        </div>
+
+        <div class="image-wrapper" id="image3">
+            <a href="language.html"><img src="imagenes/bandera-reinounido.png" alt="Imagen 3" style="width: 390px; height: 62vh; margin-top: -90px;"/>
+            <div class="overlay">
+                <div class="text"><img src="imagenes/inglish-ing.png" alt="" style="width: 120px; height: 5vh;"></div>
+            </div>
+            </a>
+        </div>
+    </div>
+    </main>
+
+    
+    <audio id="audio1" src="sonidos/bloop-2-186531.mp3"></audio>
+    <audio id="audio2" src="sonidos/bloop-2-186531.mp3"></audio>
+    <audio id="audio3" src="sonidos/bloop-2-186531.mp3"></audio>
+
+    <script>
+        document.getElementById('image1').addEventListener('mouseover', function() {
+            document.getElementById('audio1').play();
+        });
+        document.getElementById('image1').addEventListener('mouseout', function() {
+            document.getElementById('audio1').pause();
+            document.getElementById('audio1').currentTime = 0;
+        });
+
+        document.getElementById('image2').addEventListener('mouseover', function() {
+            document.getElementById('audio2').play();
+        });
+        document.getElementById('image2').addEventListener('mouseout', function() {
+            document.getElementById('audio2').pause();
+            document.getElementById('audio2').currentTime = 0;
+        });
+
+        document.getElementById('image3').addEventListener('mouseover', function() {
+            document.getElementById('audio3').play();
+        });
+        document.getElementById('image3').addEventListener('mouseout', function() {
+            document.getElementById('audio3').pause();
+            document.getElementById('audio3').currentTime = 0;
+        });
+    </script>
+  </body>
+</html>
