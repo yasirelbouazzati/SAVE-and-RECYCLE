@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAVE and RECYCLE</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="shortcut icon" href="./imagenes/favicon.png" type="image/x-icon" />
+
+ 
+  <style>
+    #container {
+      text-align: right;
+      margin-top: -620px; /* Ajusta según sea necesario */
+      margin-left: 1420px;
+    }
+
+    .p {
+      opacity: 0%;
+    }
+
+    /* Estilos para la imagen en la esquina superior derecha */
+    #corner-image {
+      position: fixed;
+      top: 10px;
+      right: -400px;
+      z-index: 9999; /* Asegura que esté sobre otros elementos */
+    }
+
+
+
+
+      .fondo {
+  background-image: url(imagenes/pio.gif);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  width: 100vh;
+  height: 100%;
+}
+
+
+  </style>
+</head>
+
+<body class="fondo">
+
+  <main>
+
+    
+  <audio autoplay loop>
+      <source src="sonidos/musica (3).mp3" type="audio/mp3">
+    </audio>
+    <a href="index.php" class="cerrar-link">
+      <img src="imagenes/xxx.png" alt="Cerrar" style="
+            width: 100px;
+            height: 100px;
+            margin-top: -149px;
+            float: left;
+            margin-left: -748px;
+          " />
+    </a>
+
+    <a href="language.html">
+      <div class="play" style="margin-top: 10%;  margin-left: 100px ;">
+        <img class="language--btn" src="imagenes/LANGUAGE.png" />
+      </div>
+    </a>
+
+    <a href="credit.html">
+      <div class="play" style="margin-top: 10%;  margin-left: 100px ;">
+        <img class="credit--btn" src="imagenes/CREDITS.png" />
+      </div>
+    </a>
+
+    <a href="help.html">
+      <div class="play" style="margin-top: 10%; margin-left: 100px ;">
+        <img class="help--btn" src="imagenes/HELP.png" />
+      </div>
+    </a>
+
+    <!-- Contenedor para la imagen en la esquina superior derecha -->
+    <div id="corner-image">
+      <a href="login.php">
+        <img src="imagenes/cr7.png" alt="Descripción de la imagen" style="width: 20%; height: auto; margin-left: -20%;" />
+      </a>
+    </div>
+
+    <div id="container">
+      <audio class="player" id="audioPlayer"></audio>
+    </div>
+
+  </main>
+
+  <script>
+    // Tu script JavaScript aquí
+  </script>
+
+</body>
+
+</html>

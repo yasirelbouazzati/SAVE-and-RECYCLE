@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book</title>
+  
+  <link rel="shortcut icon" href="./imagenes/favicon.png" type="image/x-icon" />
+  <style>
+    *,
+    *:before,
+    *:after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    ::-webkit-scrollbar {
+      width: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #222;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    ::selection {
+      background: #222;
+      color: white;
+    }
+
+    ::-moz-selection {
+      background: #222;
+      color: white;
+    }
+
+    body * {
+      transform-style: preserve-3d;
+      /* am i doing this wrong? */
+    }
+
+    body {
+      background-color: rgb(255, 255, 255);
+      background-image: url(imagenes/fondo1.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+      font-family: "Gabriela", serif;
+      perspective: 70em;
+      /*in your face*/
+      overflow-y: hidden;
+    }
+
+    h1,
+    p {
+      margin: 5% 0;
+    }
+
+    .book {
+      height: 80%;
+      max-height: 500px;
+      min-height: 300px;
+      width: 800px;
+      background: linear-gradient(45deg, #9370db, #ff69b4, #ffa07a),
+        url("http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg");
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      margin: auto;
+      border: 3px solid hsla(30, 10%, 20%, 1);
+      border-radius: 5px;
+      box-shadow: 0 0 150px hsla(170, 0%, 0%, 0.4);
+      animation: aura 5s infinite alternate;
+      /* Definimos la animación */
+    }
+
+    @keyframes aura {
+      10% {
+        filter: hue-rotate(0deg);
+        /* Cambia el color inicial */
+      }
+
+      120% {
+        filter: hue-rotate(160deg);
+        /* Cambia el color final */
+      }
+    }
+
+
+    .page {
+      height: 100%;
+      width: 50%;
+      line-height: 1.5;
+      border-right: 10px solid transparent;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform-origin: 0 50%;
+      transition: 0.8s;
+      /*animation: unflip .3s linear;*/
+    }
+
+    [class*="side"] {
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      background-color: hsl(0, 0%, 100%);
+      background-image: url("http://inspirationhut3.inspirationhut.netdna-cdn.com/wp-content/uploads/2012/11/Old-Paper-Texture-3.jpg");
+      background-size: 100% 100%;
+      backface-visibility: hidden;
+      overflow: auto;
+      padding: 5% 8%;
+    }
+
+    .side-1 {
+      z-index: 2;
+      box-shadow: inset 50px 0 50px rgba(0, 0, 0, 0.5);
+      transition: 0.5s;
+    }
+
+    .side-2 {
+      transform: rotateY(180deg);
+      box-shadow: inset -50px 0 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .flipped>.side-1 {
+      box-shadow: inset 300px 0 50px rgba(0, 0, 0, 0.8);
+      transition: 0.6s;
+    }
+
+    .flipped>[class*="side"] {
+      pointer-events: auto;
+    }
+
+    .page:after {
+      width: 100px;
+      height: 50px;
+      background-color: #000000;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: -100px;
+      margin: auto;
+      color: white;
+      text-shadow: 0 -1px 0 #000000;
+      line-height: 50px;
+      text-align: center;
+      font-family: monospace;
+      content: "NEXT-PAGE";
+      animation: hide 0.8s linear;
+    }
+
+    .page.flipped:after {
+      content: "PREV-PAGE";
+      transform: rotateY(180deg);
+      pointer-events: auto;
+    }
+
+    .sound-button {
+      position: absolute;
+      top: 70%;
+      right: -75px;
+      transform: translateY(-50%);
+      background-color: #7134db;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    /* to hide on flip animation */
+    @keyframes hide {
+      0% {
+        opacity: 0;
+      }
+
+      85% {
+        opacity: 0;
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+
+    .flipped {
+      transform: rotateY(-180deg);
+      pointer-events: none;
+      /*animation: flip .3s linear;
+  animation-fill-mode: forwards;*/
+    }
+
+    .no-anim,
+    .no-anim:after {
+      animation: none;
+      /* disable animation when page loads */
+    }
+
+    @keyframes flip {
+      to {
+        transform: rotateY(-180deg);
+      }
+    }
+
+    @keyframes unflip {
+      from {
+        transform: rotateY(-180deg);
+      }
+
+      to {
+        transform: rotateY(0deg);
+      }
+    }
+
+    .next-page-button {
+      position: absolute;
+      top: 70%;
+      right: -75px;
+      transform: translateY(-50%);
+      background-color: #7134db;
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      z-index: 3;
+      /* Asegura que el nuevo botón esté encima del existente */
+    }
+
+    .next-page-button:hover {
+      background-color: #552685;
+    }
+
+    #page-1 {
+      background: url("/imagenes/FONDO-PAGINA.gif") center center fixed;
+      background-size: contain;
+      /* O ajusta a tus necesidades, por ejemplo, "auto" */
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+    }
+
+
+
+    .title--text {
+      width: 30vh;
+      height: 15vh;
+    }
+
+    .container-title--text {
+      margin-top: 170px;
+      margin-left: 15%;
+      width: 30vh;
+      height: 20vh;
+    }
+  </style>
+</head>
+
+<body>
+
+    <audio id="sound" src="sonidos/CUENTO.mp3"></audio>
+
+
+  <a href="niveles.php" class="cerrar-link">
+    <img src="imagenes/xxx.png" alt="Cerrar" style="
+                width: 100px;
+    height: 100px;
+    margin-top: -3px;
+    float: left;
+    margin-left: -3px;
+          " />
+  </a>
+
+  <div class="book">
+    <button class="sound-button" onclick="playSound()">Play Sound</button>
+    <div id="page-1" class="page no-anim">
+      <div class="side-1" id="p1">
+        <div class="content">
+
+          <div class="container-title--text">
+            <div><img class="title--text" src="imagenes/titulo-libro.png" /></div>
+          </div>
+
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-1 -->
+      <div class="side-2" id="p2">
+        <div class="content">
+          <h1>Mateo and Ana's Recycling Plan</h1>
+          <br><br> <br><br>
+          <h4>Mateo and Ana discovered a messy room full of garbage. <br><br> <br> They felt discouraged when seeing the chaos.</h4>
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-2 -->
+    </div>
+    <!-- .page -->
+
+    <div id="page-2" class="page no-anim">
+      <div class="side-1" id="p3">
+        <div class="content">
+          <img src="imagenes/Escena1.jpeg"  style="width: 90%; height: auto;" alt="">
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-1 -->
+      <div class="side-2" id="p4">
+        <div class="content">
+          <br><br><br><br><br><br>
+          <h4>However, they had a brilliant idea...
+
+ <br><br> ¡ TO RECYCLE ! <BR></BR> </h4>
+          
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-2 -->
+    </div>
+    <!-- #page-2 -->
+
+    <div id="page-3" class="page no-anim">
+      <div class="side-1" id="p5">
+        <div class="content">
+            <img src="imagenes/Escena2.jpeg"  style="width: 90%; height: auto;" alt="">
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-1 -->
+      <div class="side-2" id="p6">
+        <div class="content"><br><br><br><br><br><br>
+          <h4>But Ana, however, couldn't clean because she had homework to do. So, she assigned that task to Mateo.</h4>
+        
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-2 -->
+    </div>
+    <!-- #page-3 -->
+
+    <div id="page-4" class="page no-anim">
+      <div class="side-1" id="p7">
+        <div class="content">
+        <img src="imagenes/Escena3.jpeg"  style="width: 90%; height: auto;" alt="">
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-1 -->
+      <div class="side-2" id="p8">
+        <div class="content">
+          <br><br><br><br>
+          <h3> And now, Mateo's mission would be to clean and recycle every object, 
+            thereby transforming the cluttered room into a clean and orderly place.</h3>
+          
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-2 -->
+    
+    </div>
+    <!-- #page-4 -->
+
+
+
+
+
+      <div id="page-4" class="page no-anim">
+      <div class="side-1" id="p7">
+        <div class="content">
+        <img src="imagenes/Escena4.jpeg"  style="width: 90%; height: auto;" alt="">
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-1 -->
+      <div class="side-2" id="p8">
+        <div class="content">
+          <br><br><br><br><br><br><br><br>
+          <h1 style="margin-left:25% ;">THE END</h1>
+          
+        </div>
+        <!-- .content -->
+      </div>
+      <!-- .side-2 -->
+    
+    </div>
+  </div>
+
+
+  <div style="width: 105px; height: 4vh; margin-top:  630px; float: left; margin-left: 80%; ">
+    <a href="nivel1.php" style=" padding: 30%; padding-top: -30px;">
+    <div style="height: 10vh; width:100%;"> <img style="height: 5vh; width: 70%; margin-top: -221px;"  src="imagenes/skip.jpg" alt=""></div>
+    </a>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    function playSound() {
+      // Aquí puedes agregar el código para reproducir el sonido
+      // Por ejemplo, puedes usar la API Web Audio o la etiqueta de audio HTML
+      // En este ejemplo, simplemente mostramos un mensaje en la consola.
+      console.log("Reproduciendo sonido...");
+    }
+
+    $(".page").click(function () {
+      $(this).removeClass("no-anim").toggleClass("flipped");
+      $(".page > div").click(function (e) {
+        e.stopPropagation();
+      });
+      reorder();
+
+      // Verifica si es la última página y oculta el botón de sonido
+      if ($(this).is(":last-child")) {
+        $(".sound-button").hide();
+      } else {
+        $(".sound-button").show();
+      }
+    });
+
+    function reorder() {
+      $(".book").each(function () {
+        var pages = $(this).find(".page");
+        var pages_flipped = $(this).find(".flipped");
+        pages.each(function (i) {
+          $(this).css("z-index", pages.length - i);
+        });
+        pages_flipped.each(function (i) {
+          $(this).css("z-index", i + 1);
+        });
+      });
+    }
+    reorder();
+  </script>
+  
+  <audio id="pageFlipSound">
+  <source src="sonidos/libro.mp3" type="audio/mp3">
+</audio>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var pageFlipSound = document.getElementById('pageFlipSound');
+
+    // Función para reproducir el sonido
+    function playPageFlipSound() {
+      pageFlipSound.play();
+    }
+
+    // Obtener todos los elementos con clase 'page', 'next' y 'prev'
+    var pageElements = document.querySelectorAll('.page, .next, .prev');
+
+    // Agregar evento de clic a los elementos 'page', 'next' y 'prev' para reproducir el sonido
+    pageElements.forEach(function(element) {
+      element.addEventListener('click', playPageFlipSound);
+    });
+  });
+</script>
+
+
+ <script>
+        function playSound() {
+            var audio = document.getElementById('sound');
+            audio.play();
+        }
+    </script>
+</body>
+
+  
+</html>
