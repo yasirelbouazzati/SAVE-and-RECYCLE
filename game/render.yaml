@@ -1,7 +1,7 @@
 services:
   - type: web
     name: save-and-recycle
-    env: environment
+    env: environment      # NO "docker"
     plan: free
     buildCommand: ""
     startCommand: php -S 0.0.0.0:10000
